@@ -192,17 +192,15 @@ app.post('/login', (req, res) => {
     "SELECT * FROM users WHERE name=?", 
       [[req.body.name]], (err, data, fields) => { 
         if (err) throw err; 
-        let name= req.body.name;
-        console.log(name);
-        let password = req.body.password;
-        console.log(password);
-        let hash = "$2b$10$g8QYamUl7dDVg3ZQj5z7duMZMrB4kwSCqEBVXknCxcOpxmZDk524q";
-        console.log(hash);
+
+        let password = req.body.password;        
+        let hash = data[0].password;
+
         if(data.length = true){
           connection.query(  
             "SELECT * FROM users WHERE name=? and password=?", 
             [[req.body.name], [req.body.password]], (err, data, fields) => { 
-             
+              
                 bcrypt.compare(password, hash, (err, result) => {
                 if(result == true){
                   req.session.auth = true; 
@@ -279,7 +277,7 @@ app.post('/cart-del', (req, res) => {
 app.get('/anime', (req, res) => {
   connection.query("SELECT * FROM anime", (err, data, fields) => {
     if (err) throw err;
-    res.render('anime', {
+    res.render('category/anime', {
         'anime': data,
         auth: req.session.auth
     });
@@ -288,7 +286,7 @@ app.get('/anime', (req, res) => {
 app.get('/games', (req, res) => {
   connection.query("SELECT * FROM games", (err, data, fields) => {
     if (err) throw err;
-    res.render('games', {
+    res.render('category/games', {
         'games': data,
         auth: req.session.auth
     });
@@ -297,7 +295,7 @@ app.get('/games', (req, res) => {
 app.get('/music', (req, res) => {
   connection.query("SELECT * FROM music", (err, data, fields) => {
     if (err) throw err;
-    res.render('music', {
+    res.render('category/music', {
         'music': data,
         auth: req.session.auth
     });
@@ -306,7 +304,7 @@ app.get('/music', (req, res) => {
 app.get('/cartoon', (req, res) => {
   connection.query("SELECT * FROM cartoon", (err, data, fields) => {
     if (err) throw err;
-    res.render('cartoon', {
+    res.render('category/cartoon', {
         'cartoon': data,
         auth: req.session.auth
     });
@@ -315,7 +313,7 @@ app.get('/cartoon', (req, res) => {
 app.get('/fanko_pop', (req, res) => {
   connection.query("SELECT * FROM fanko_pop", (err, data, fields) => {
     if (err) throw err;
-    res.render('fanko_pop', {
+    res.render('category/fanko_pop', {
         'fanko_pop': data,
         auth: req.session.auth
     });
@@ -324,7 +322,7 @@ app.get('/fanko_pop', (req, res) => {
 app.get('/movies', (req, res) => {
   connection.query("SELECT * FROM movies", (err, data, fields) => {
     if (err) throw err;
-    res.render('movies', {
+    res.render('category/movies', {
         'movies': data,
         auth: req.session.auth
     });
@@ -336,7 +334,7 @@ app.get('/movies', (req, res) => {
 app.get('/aot', (req, res) => {
   connection.query("SELECT * FROM aot", (err, data, fields) => {
     if (err) throw err;
-    res.render('aot', {
+    res.render('catalog/anime/aot', {
         'aot': data,
         auth: req.session.auth
     });
@@ -356,7 +354,7 @@ app.get('/aot/:id', (req, res) => {
 app.get('/DemonSlayer', (req, res) => {
   connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
     if (err) throw err;
-    res.render('DemonSlayer', {
+    res.render('catalog/anime/DemonSlayer', {
         'DemonSlayer': data,
         auth: req.session.auth
     });
@@ -376,7 +374,7 @@ app.get('/DemonSlayer/:id', (req, res) => {
 app.get('/OnePanchMan', (req, res) => {
   connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
     if (err) throw err;
-    res.render('OnePanchMan', {
+    res.render('catalog/anime/OnePanchMan', {
         'onepanchman': data,
         auth: req.session.auth
     });

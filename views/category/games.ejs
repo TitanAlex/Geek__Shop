@@ -1,25 +1,25 @@
-<%- include('particles/header.ejs') %>
+<%- include('../particles/header.ejs') %>
 
-<%- include('particles/navigation.ejs') %>
+<%- include('../particles/navigation.ejs') %>
 
 <div class="catalog">
     <div class="catalog__head">
         <div class="catalog__title">
-            <h2>Fanko Pop</h3>
+            <h2>Игры</h3>
         </div>
         <div class="line"></div>
     </div>
-<% for (let i = 0; i < fanko_pop.length; i++) { %>
+<% for (let i = 0; i < games.length; i++) { %>
 <div class="container">
             <div class="product">
                 <div class="image">
-                    <a  href="/fanko_pop/<%= fanko_pop[i].id %>">
-                    <img  class="container-img" src="img/planets/<%= fanko_pop[i].image %>" alt="ERROR"></a>
+                    <a  href="/games/<%= games[i].id %>">
+                    <img  class="container-img" src="img/games/<%= games[i].image %>" alt="ERROR"></a>
                 </div>
                 <div class="info">
-                    <h3><%= fanko_pop[i].title %></h3>
+                    <h3><%= games[i].title %></h3>
 
-                    <ul class="rating"
+                    <ul class="rating">
                         <li><ion-icon name="star"></ion-icon></li>
                         <li><ion-icon name="star"></ion-icon></li>
                         <li><ion-icon name="star"></ion-icon></li>
@@ -27,7 +27,7 @@
                         <li><ion-icon name="star-half"></ion-icon></li>
                     </ul>
                     <div class="info-price">
-                        <span class="price"><%= fanko_pop[i].prise %> <small>₽</small></span>
+                        <span class="price"><%= games[i].prise %> <small>₽</small></span>
                         <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button>
                     </div>
                 </div>
@@ -36,4 +36,5 @@
 </div>
 <% } %>
 </div>
-<%- include('particles/footer.ejs') %>
+
+<%- include('../particles/footer.ejs') %>

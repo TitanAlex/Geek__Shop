@@ -1,23 +1,23 @@
-<%- include('particles/header.ejs') %>
+<%- include('../../particles/header.ejs') %>
 
-<%- include('particles/navigation.ejs') %>
+<%- include('../../particles/navigation.ejs') %>
 
 <div class="catalog">
     <div class="catalog__head">
         <div class="catalog__title">
-            <h2>Клинок, рассекающий демонов</h3>
+            <h2>Атака Титанов</h3>
         </div>
         <div class="line"></div>
     </div>
-<% for (let i = 0; i < DemonSlayer.length; i++) { %>
+<% for (let i = 0; i < aot.length; i++) { %>
 <div class="container">
             <div class="product">
                 <div class="image">
-                    <a  href="/DemonSlayer/<%= DemonSlayer[i].id %>">
-                    <img  class="container-img" src="img/DemonSlayer/<%= DemonSlayer[i].image %>" alt="ERROR"></a>
+                    <a  href="/aot/<%= aot[i].id %>">
+                    <img  class="container-img" src="img/category/anime/aot/<%= aot[i].image %>" alt="ERROR"></a>
                 </div>
                 <div class="info">
-                    <h3><%= DemonSlayer[i].title %></h3>
+                    <h3><%= aot[i].title %></h3>
 
                     <ul class="rating">
                         <li><ion-icon name="star"></ion-icon></li>
@@ -27,26 +27,26 @@
                         <li><ion-icon name="star-half"></ion-icon></li>
                     </ul>
                     <div class="info-price">
-                        <span class="price"><%= DemonSlayer[i].price %> <small>₽</small></span>
+                        <span class="price"><%= aot[i].price %> <small>₽</small></span>
                         <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
 
                         <form method="post" action="/cart_add" class="">
-                            <input value="<%= DemonSlayer[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
+                            <input value="<%= aot[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
                                 placeholder="" style="display: none;">
-                            <input value="<%= DemonSlayer[i].title %>" class="form-group__input" type="text" id="title" name="title"
+                            <input value="<%= aot[i].title %>" class="form-group__input" type="text" id="title" name="title"
                                 placeholder="title" style="display: none;">
-                            <input value="<%= DemonSlayer[i].description %>" class="form-group__input" type="text" id="description" name="description"
+                            <input value="<%= aot[i].description %>" class="form-group__input" type="text" id="description" name="description"
                                 placeholder="Описание" style="display: none;">
-                            <input value="<%= DemonSlayer[i].image %>" class="form-group__input" type="text" id="image" name="image"
+                            <input value="<%= aot[i].image %>" class="form-group__input" type="text" id="image" name="image"
                                 placeholder="image" style="display: none;">
-                            <input value="<%= DemonSlayer[i].price %>" class="form-group__input" type="text" id="price" name="price"
+                            <input value="<%= aot[i].price %>" class="form-group__input" type="text" id="price" name="price"
                                 placeholder="price" style="display: none;">
-                            <input value="<%= DemonSlayer[i].stars %>" class="form-group__input" type="text" id="stars" name="stars"
+                            <input value="<%= aot[i].stars %>" class="form-group__input" type="text" id="stars" name="stars"
                                 placeholder="stars" style="display: none;">
                                 <input class="form-button-delete" type="submit" value="Купить">
                             </form>
                     </div>
-                    <p class="info-description"><%= DemonSlayer[i].description %></p>
+                    <p class="info-description"><%= aot[i].description %></p>
                 </div>
             </div>
        
@@ -74,12 +74,6 @@
     </div>
 
     <div class="form-group">
-        <label class="form-group__label" for="title">Оценка</label>
-        <input value="" class="form-group__input" type="text" id="stars" name="stars"
-            placeholder="stars">
-    </div>
-
-    <div class="form-group">
         <label class="form-group__label" for="title">Описание</label>
         <input value="" class="form-group__input" type="text" id="description" name="description"
             placeholder="description">
@@ -100,4 +94,4 @@
         <input class="form-button-delete" type="submit" value="Удалить">
 
 </form>
-<%- include('particles/footer.ejs') %>
+<%- include('../../particles/footer.ejs') %>
