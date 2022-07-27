@@ -1,0 +1,26 @@
+@media (max-width: 700px){
+    .navigation__box{display: block;}
+    .navigation__link_img img{ height: 0px; margin: 0px; }
+    .navigation__link {position: static; display: none;} 
+    .navigation__box img{ width: 30%;}
+    .navigation__link_img__menu img{width: 40%; }
+    .navigation__link_menu{ display: inline-block;}
+    .form_auth_all{ display: inline;}
+    .menu{display: inline-block;} 
+    .navigation{display: none;}
+    .left__box{float: none; margin: 0px; font-size: medium;}
+    .right__box{float: none; margin: 0px; font-size: medium;}
+}
+
+
+
+@media (max-width: 500px){
+    .section__description{ width: 90%;}
+    .navigation__link {position: static; display: none;} 
+    .navigation__link  img{position: static; display: inline-block;}    
+    .contacts__text{ width: 90%;}
+    p{font-size: 14px;}
+}
+@media (max-width:300px){
+    
+}

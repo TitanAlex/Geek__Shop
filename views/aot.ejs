@@ -1,0 +1,97 @@
+<%- include('particles/header.ejs') %>
+
+<%- include('particles/navigation.ejs') %>
+
+<div class="catalog">
+    <div class="catalog__head">
+        <div class="catalog__title">
+            <h2>Атака Титанов</h3>
+        </div>
+        <div class="line"></div>
+    </div>
+<% for (let i = 0; i < aot.length; i++) { %>
+<div class="container">
+            <div class="product">
+                <div class="image">
+                    <a  href="/aot/<%= aot[i].id %>">
+                    <img  class="container-img" src="img/category/anime/aot/<%= aot[i].image %>" alt="ERROR"></a>
+                </div>
+                <div class="info">
+                    <h3><%= aot[i].title %></h3>
+
+                    <ul class="rating">
+                        <li><ion-icon name="star"></ion-icon></li>
+                        <li><ion-icon name="star"></ion-icon></li>
+                        <li><ion-icon name="star"></ion-icon></li>
+                        <li><ion-icon name="star"></ion-icon></li>
+                        <li><ion-icon name="star-half"></ion-icon></li>
+                    </ul>
+                    <div class="info-price">
+                        <span class="price"><%= aot[i].price %> <small>₽</small></span>
+                        <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
+
+                        <form method="post" action="/cart_add" class="">
+                            <input value="<%= aot[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
+                                placeholder="" style="display: none;">
+                            <input value="<%= aot[i].title %>" class="form-group__input" type="text" id="title" name="title"
+                                placeholder="title" style="display: none;">
+                            <input value="<%= aot[i].description %>" class="form-group__input" type="text" id="description" name="description"
+                                placeholder="Описание" style="display: none;">
+                            <input value="<%= aot[i].image %>" class="form-group__input" type="text" id="image" name="image"
+                                placeholder="image" style="display: none;">
+                            <input value="<%= aot[i].price %>" class="form-group__input" type="text" id="price" name="price"
+                                placeholder="price" style="display: none;">
+                            <input value="<%= aot[i].stars %>" class="form-group__input" type="text" id="stars" name="stars"
+                                placeholder="stars" style="display: none;">
+                                <input class="form-button-delete" type="submit" value="Купить">
+                            </form>
+                    </div>
+                    <p class="info-description"><%= aot[i].description %></p>
+                </div>
+            </div>
+       
+</div>
+<% } %>
+</div>
+
+<form action="/store-add" method="post" class="form_group_all">
+    <div class="form-group">
+        <label class="form-group__label" for="title">Заголовок</label>
+        <input value="" class="form-group__input" type="text" id="title" name="title"
+            placeholder="title">
+    </div>
+
+    <div class="form-group">
+        <label class="form-group__label" for="image">Картинка</label>
+        <input value="" class="form-group__input" type="text" id="image" name="image"
+            placeholder="image">
+    </div>
+
+    <div class="form-group">
+        <label class="form-group__label" for="title">Цена</label>
+        <input value="" class="form-group__input" type="text" id="price" name="price"
+            placeholder="price">
+    </div>
+
+    <div class="form-group">
+        <label class="form-group__label" for="title">Описание</label>
+        <input value="" class="form-group__input" type="text" id="description" name="description"
+            placeholder="description">
+    </div>
+
+        <input class="form-button" type="submit" value="Добавить">
+
+       
+</form>
+
+<form method="post" action="/delete" class="form_group_all">
+    <div class="form-group">
+        <label class="form-group__label" for="title">Id</label>
+        <input value="" class="form-group__input" type="text" id="id" name="id"
+            placeholder="Id">
+    </div>
+
+        <input class="form-button-delete" type="submit" value="Удалить">
+
+</form>
+<%- include('particles/footer.ejs') %>

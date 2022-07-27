@@ -1,0 +1,217 @@
+/* NAVIGATION */
+.navigation{
+    background-color: black;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navigation__box{
+    padding: 20px;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .navigation__link{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: Bold;
+    width: 10%;
+    margin: 10px;
+  }
+  
+  .navigation__box img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+  .navigation__link_img{
+    height: 50px;
+    width: 10%;
+    margin: 10px;
+  }
+  .navigation__link_menu{
+    color: white;
+    font-size: 30px;
+    float: left;
+    display: none;
+    margin: 10px;
+  }
+
+
+/* MENU */
+/* Оформление панели */
+#side-checkbox {
+    display: none;
+}
+.side-panel {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: -360px;
+    background: #337AB7;
+    transition: all 0.5s;   
+    width: 320px;
+    height: 100vh;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.4);
+    color: #FFF;
+    padding: 40px 20px;
+}
+.side-panel p{
+    font-size: 20px;
+    text-align: center;
+    top: 0;
+}
+.side-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #BFE2FF;
+    text-align: center;
+}
+/* Оформление кнопки на странице */
+.side-button-1-wr {
+    text-align: center; /* Контейнер для кнопки, чтобы было удобнее ее разместить */
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.side-button-1 {
+    display: inline-block;
+}
+.side-button-1 .side-b {
+    margin: 10px;
+    text-decoration: none;
+    position: relative;
+    font-size: 30px;
+    line-height: 20px;
+    padding: 12px 30px;
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-family: 'Roboto', Тahoma, sans-serif;
+    background: #337AB7;
+    cursor: pointer; 
+    border: 2px solid #BFE2FF;
+}
+.side-button-1 .side-b:hover,
+.side-button-1 .side-b:active,
+.side-button-1 .side-b:focus {
+    color: #FFF;
+}
+.side-button-1 .side-b:after,
+.side-button-1 .side-b:before {
+    position: absolute;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    transition: all 280ms ease-in-out;
+    width: 0;
+}
+.side-button-1 .side-open:after,
+.side-button-1 .side-open:before {
+    background: green;
+}
+.side-button-1 .side-close:after,
+.side-button-1 .side-close:before {
+    background: red;
+}
+.side-button-1 .side-b:before {
+    top: -6px;
+}
+.side-button-1 .side-b:hover:after,
+.side-button-1 .side-b:hover:before {
+    width: 100%;
+    left: 0;
+}
+/* Переключатели кнопки 1 */
+.side-button-1 .side-close {
+    display: none;
+}
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-open {
+    display: none;
+}
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-close {
+    display: block;
+}
+#side-checkbox:checked + .side-panel {
+    left: 0;
+}
+/* Оформление кнопки на панеле */
+.side-button-2 {
+    font-size: 40px;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    transform: rotate(45deg);
+    color: #BFE2FF;    
+    transition: all 280ms ease-in-out;    
+}
+.side-button-2:hover {
+    transform: rotate(45deg) scale(1.1);    
+    color: #FFF;
+}
+
+/* NAVIGATION__MENU */
+
+.navigation__menu{
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navigation__box__menu{
+    padding: 20px;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .navigation__link__menu{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: Bold;
+    width: 10%;
+    margin: 10px;
+  }
+  
+  .navigation__box__menu img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+  .navigation__link_img__menu{
+    margin-left: auto;
+    margin-right: auto;
+  }
+.menu{
+    display: none;
+}
+.navigation__box__list__menu{
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+.navigation__box__list__menu li{
+    margin-bottom: 20px;
+    font-size: xx-large;
+    border-bottom: 1px solid #BFE2FF;
+    text-align: left;
+}
+@media (max-width: 700px){
+    .navigation__box__menu{display: block;}
+    /* .navigation__link_img__menu{ height: 0px; margin: 0px; } */
+    .navigation__box__menu img{ width: 30%;}
+    .navigation__link__menu  img{position: static; display: inline-block;} 
+    /* .navigation__link_img__menu{width: 40%; height: 30px; } */
+}

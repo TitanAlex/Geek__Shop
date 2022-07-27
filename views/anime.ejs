@@ -1,0 +1,64 @@
+<%- include('particles/header.ejs') %>
+
+<%- include('particles/navigation.ejs') %>
+
+<div class="catalog">
+    <div class="catalog__head">
+        <div class="catalog__title">
+            <h2>Аниме</h3>
+        </div>
+        <div class="line"></div>
+    </div>
+<% for (let i = 0; i < anime.length; i++) { %>
+<div class="container">
+            <div class="product">
+                <div class="image">
+                    <a  href="<%= anime[i].href %>">
+                    <img  class="container-img" src="img/category/Anime/<%= anime[i].image %>" alt="ERROR"></a>
+                </div>
+                <div class="info">
+                    <h3><%= anime[i].title %></h3>
+                    <p class="info-description"><%= anime[i].description %></p>
+                </div>
+            </div>
+       
+</div>
+<% } %>
+</div>
+
+<form action="/store-add" method="post" class="form_group_all">
+    <div class="form-group">
+        <label class="form-group__label" for="title">Заголовок</label>
+        <input value="" class="form-group__input" type="text" id="title" name="title"
+            placeholder="title">
+    </div>
+
+    <div class="form-group">
+        <label class="form-group__label" for="image">Картинка</label>
+        <input value="" class="form-group__input" type="text" id="image" name="image"
+            placeholder="image">
+    </div>
+
+    
+
+    <div class="form-group">
+        <label class="form-group__label" for="title">Путь</label>
+        <input value="" class="form-group__input" type="text" id="href" name="href"
+            placeholder="href">
+    </div>
+        <input class="form-button" type="submit" value="Добавить">
+
+       
+</form>
+
+<form method="post" action="/delete" class="form_group_all">
+    <div class="form-group">
+        <label class="form-group__label" for="title">Id</label>
+        <input value="" class="form-group__input" type="text" id="id" name="id"
+            placeholder="Id">
+    </div>
+
+        <input class="form-button-delete" type="submit" value="Удалить">
+
+</form>
+<%- include('particles/footer.ejs') %>

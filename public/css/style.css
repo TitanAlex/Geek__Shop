@@ -1,0 +1,293 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+p{
+  font-size: 18px;
+}
+
+/*scrollbar*/
+::-webkit-scrollbar{
+	width: 15px;
+}
+::-webkit-scrollbar-track{
+	background: #fdfdfd;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+}
+::-webkit-scrollbar-thumb{
+	background: #CFCFCF;
+	border-radius: 8px;
+	border: 3px solid #FFF0F5;
+}
+::-webkit-scrollbar-thumb:hover{
+	background: #B5B5B5;
+	border-radius: 8px;
+	border: 3px solid #FFF0F5;
+}
+
+ /* CATALOG */
+.catalog{
+  padding: 20px;
+  text-align: center;
+  
+}
+.catalog__title{
+  margin-top: 0; 
+}
+.catalog__title h2{
+  font-weight: 9000;
+}
+.line{
+  background: black;
+  height: 4px;
+  border-radius: 4px;
+  width: 70%;
+  margin-top: 30px;
+  opacity: 0.3;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+
+/* SECTION */
+  .section {
+    padding: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    
+  }
+  .section__link{
+    text-decoration: none;
+  }
+  .section__image {
+    margin-top: 20px;
+    border-radius: 8px;
+    width: 40%;
+  }
+
+  .section__title {
+    color: white;
+    margin-top: 0;
+    
+  }
+  .section__description{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+/* CONTAINER */
+.container{
+  margin: 20px;
+  width: 290px;
+  display: inline-block;
+ }
+.image{
+ margin-bottom: 10px;
+}
+.container-img{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.info h3{
+  font-size: 21px;
+  font-weight: Bold;
+  margin-bottom: 0;
+}
+.rating{
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+.rating li{
+  display: inline-block;
+  color: #cdcd1a;
+}
+.info-price{
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.info p{
+  color: grey;
+  font-weight: 900;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.add-to-cart{
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(27, 71, 27);
+  color: white;
+  border-radius: 10px;
+}
+.price{
+  font-weight: 700;
+  font-size: 18px;
+}
+
+
+/* SECTION__ITEM */
+.section__item {
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border:  solid white ;
+  border-radius: 20px;
+  width: 33%;
+}
+
+.section__item__image{
+  margin-top: 20px;
+  border-radius: 8px;
+  width: 40%;
+}
+.section__item__description{
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* FORM */
+.form__user{
+  background-color: black;
+  text-align: center;
+  width: 100%;
+}
+.form_auth{
+ margin: 20px;
+}
+.form_auth_all{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.form_group_all{
+ margin-left: auto;
+ margin-right: auto;
+ background-color: black;
+  text-align: center;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group__label {
+  display: block;
+  margin-bottom: 3px;
+  color: white;
+  font-weight: Bold;
+  letter-spacing: 3.5px;
+}
+
+.form-group__input {
+  padding: 7px;
+}
+
+.form-button {
+  color: white;
+  padding: 7px;
+  background-color: blue;
+  margin: 20px 20px;
+}
+
+.form-button:hover {
+  cursor: pointer;
+}
+.form-button-delete {
+  color: white;
+  padding: 7px;
+  background-color: red;
+  margin-bottom: 20px;
+}
+
+.form-button-delete:hover {
+  cursor: pointer;
+}
+
+/*CONTACTS*/
+.contacts__wrapper{
+	background-color: #434242;
+	height: auto;
+	display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
+	align-items: center;
+}
+.contacts__header{
+	color: white;
+	width: 40%;
+	font-family: Roboto;
+	text-align: center;
+}
+.contacts__text{
+	width: 40%;
+	color: lightgrey;
+	
+	text-align: center;
+}
+.ln{
+	background: lightgrey;
+  height: 4px;
+  border-radius: 4px;
+  width: 70%;
+	margin-top: 30px;
+	opacity: 0.3;
+}
+.contacts__links *{
+	font-family: assassin, sans-serif;
+	cursor: pointer;
+	color: lightgrey;
+	text-decoration: none;
+
+
+}
+.left__box{
+	font-size: 23px;
+	line-height: 28px;
+	float: left;
+	height: 100px;
+	margin: 50px 0px;
+}
+.right__box{
+	margin-left: auto;
+	font-size: 23px;
+	line-height: 28px;
+	float: right;
+	margin: 50px 0px;
+}
+.foot__li{
+	margin-bottom: 50px;
+}
+
+.contacts_icon{
+	width: 35px;
+	height: 35px;
+	margin-right: 15px;
+	float: left;
+}
+.li{
+	width: auto;
+	height: 30px;
+	margin: 20px;
+}
+.foot__li:hover{
+	color:white;
+	filter: brightness(0) invert(1);
+}
