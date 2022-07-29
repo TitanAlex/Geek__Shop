@@ -1,0 +1,23 @@
+.empty__cart{
+    margin: 20px;
+    width: 290px;
+    display: inline-block;
+}
+
+.empty__cart__image{
+    margin-bottom: 20px;
+}
+.empty__cart__container-img{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+.empty__cart__info h3{
+    color: grey;
+    font-weight: 900;
+    margin-top: 10px;
+    font-size: 30px;
+}

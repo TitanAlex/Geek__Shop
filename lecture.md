@@ -74,4 +74,7 @@ SQL (аббр. от англ. Structured Query Language — «язык стру�
 Переименование таблицы
 
     RENAME TABLE <old table name> TO <new table name>;
-    
+
+Удалить таблицу
+
+    Drop table <table>;

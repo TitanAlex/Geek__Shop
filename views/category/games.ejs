@@ -14,22 +14,10 @@
             <div class="product">
                 <div class="image">
                     <a  href="/games/<%= games[i].id %>">
-                    <img  class="container-img" src="img/games/<%= games[i].image %>" alt="ERROR"></a>
+                    <img  class="container-img" src="img/category/Games/<%= games[i].image %>" alt="ERROR"></a>
                 </div>
                 <div class="info">
-                    <h3><%= games[i].title %></h3>
-
-                    <ul class="rating">
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star-half"></ion-icon></li>
-                    </ul>
-                    <div class="info-price">
-                        <span class="price"><%= games[i].prise %> <small>₽</small></span>
-                        <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button>
-                    </div>
+                    <h3><%= games[i].title %></h3>                
                 </div>
             </div>
        

@@ -9,7 +9,17 @@
         </div>
         <div class="line"></div>
     </div>
-    
+
+    <% if(shopping_cart.length==0) { %>
+    <div class="empty__cart" id="cart">
+        <div class="empty__cart__image">
+             <ion-icon class="empty__cart__container-img" name="cart"></ion-icon>
+        </div>
+        <div class="empty__cart__info">
+            <h3>Ваша корзина пуста</h3>                
+        </div>
+    </div>
+    <% } %>
     <% for (let i = 0; i < shopping_cart.length; i++) { %>
         <div class="container">
                     <div class="product">

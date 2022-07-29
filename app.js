@@ -5,6 +5,7 @@ const session = require('express-session');
 // https://www.npmjs.com/package/bcrypt
 const bcrypt = require("bcrypt");
 const multer = require("multer");
+const { Session } = require('inspector');
 const app = express()
 
 // Путь к директории для загрузок
@@ -70,7 +71,7 @@ app.get('/logout', (req, res) => {
 app.get('/add', (req, res) => {
   res.render('add', {
     auth: req.session.auth
-  });
+  });  
 });
 
 
@@ -225,23 +226,12 @@ app.post('/login', (req, res) => {
 // КОРЗИНА
 
 app.get('/shopping_cart', isAuth, (req, res) => {
-  // connection.query(
-  //   "INSERT INTO shopping_cart users VALUES ?",(err, data, fields) => {
-  //     if (err) throw err;
-  //     res.render('shopping_cart', {
-  //         'shopping_cart': data,
-  //         auth: req.session.auth
-          
-  //     });
-     
-
     connection.query(
     "SELECT * FROM shopping_cart",(err, data, fields) => {
       if (err) throw err;
       res.render('shopping_cart', {
           'shopping_cart': data,
-          auth: req.session.auth
-          
+            auth: req.session.auth                
       });
     }); 
   });  
@@ -330,63 +320,84 @@ app.get('/movies', (req, res) => {
 });
 
 // КАТАЛОГ
-
-app.get('/aot', (req, res) => {
-  connection.query("SELECT * FROM aot", (err, data, fields) => {
-    if (err) throw err;
-    res.render('catalog/anime/aot', {
-        'aot': data,
-        auth: req.session.auth
-    });
-  });  
-});
-app.get('/aot/:id', (req, res) => {
-  connection.query("SELECT * FROM aot WHERE id=?", [req.params.id],
-    (err, data, fields) => {
+  // АНИМЕ
+  app.get('/aot', (req, res) => {
+    connection.query("SELECT * FROM aot", (err, data, fields) => {
       if (err) throw err;
-
-      res.render('item', {
-        'aot': data[0],
-        auth: req.session.ayth
+      res.render('catalog/anime/aot', {
+          'aot': data,
+          auth: req.session.auth
       });
+    });  
   });
-});
-app.get('/DemonSlayer', (req, res) => {
-  connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
-    if (err) throw err;
-    res.render('catalog/anime/DemonSlayer', {
-        'DemonSlayer': data,
-        auth: req.session.auth
-    });
-  });  
-});
-app.get('/DemonSlayer/:id', (req, res) => {
-  connection.query("SELECT * FROM DemonSlayer WHERE id=?", [req.params.id],
-    (err, data, fields) => {
-      if (err) throw err;
+  app.get('/aot/:id', (req, res) => {
+    connection.query("SELECT * FROM aot WHERE id=?", [req.params.id],
+      (err, data, fields) => {
+        if (err) throw err;
 
-      res.render('item', {
-        'DemonSlayer': data[0],
-        auth: req.session.ayth
+        res.render('item', {
+          'aot': data[0],
+          auth: req.session.ayth
+        });
+    });
+  });
+  app.get('/DemonSlayer', (req, res) => {
+    connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
+      if (err) throw err;
+      res.render('catalog/anime/DemonSlayer', {
+          'DemonSlayer': data,
+          auth: req.session.auth
       });
+    });  
   });
-});
-app.get('/OnePanchMan', (req, res) => {
-  connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
+  app.get('/DemonSlayer/:id', (req, res) => {
+    connection.query("SELECT * FROM DemonSlayer WHERE id=?", [req.params.id],
+      (err, data, fields) => {
+        if (err) throw err;
+
+        res.render('item', {
+          'DemonSlayer': data[0],
+          auth: req.session.ayth
+        });
+    });
+  });
+  app.get('/OnePanchMan', (req, res) => {
+    connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
+      if (err) throw err;
+      res.render('catalog/anime/OnePanchMan', {
+          'onepanchman': data,
+          auth: req.session.auth
+      });
+    });  
+  });
+  app.get('/OnePanchMan/:id', (req, res) => {
+    connection.query("SELECT * FROM onepanchman WHERE id=?", [req.params.id],
+      (err, data, fields) => {
+        if (err) throw err;
+
+        res.render('item', {
+          'onepanchman': data[0],
+          auth: req.session.ayth
+        });
+    });
+  });
+// ИГРЫ
+app.get('/GenshinImpact', (req, res) => {
+  connection.query("SELECT * FROM genshinimpact", (err, data, fields) => {
     if (err) throw err;
-    res.render('catalog/anime/OnePanchMan', {
-        'onepanchman': data,
+    res.render('catalog/games/GenshinImpact', {
+        'genshinimpact': data,
         auth: req.session.auth
     });
   });  
 });
-app.get('/OnePanchMan/:id', (req, res) => {
-  connection.query("SELECT * FROM onepanchman WHERE id=?", [req.params.id],
+app.get('/GenshinImpact/:id', (req, res) => {
+  connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id],
     (err, data, fields) => {
       if (err) throw err;
 
       res.render('item', {
-        'onepanchman': data[0],
+        'genshinimpact': data[0],
         auth: req.session.ayth
       });
   });
