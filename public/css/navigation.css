@@ -22,7 +22,9 @@
     width: 10%;
     margin: 10px;
   }
-  
+  .navigation__link ion-icon{
+    font-size: 25px;
+  }
   .navigation__box img{
     width: 100%;
     object-fit: cover;

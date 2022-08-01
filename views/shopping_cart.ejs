@@ -3,72 +3,74 @@
 <%- include('particles/navigation.ejs') %>
 
 <div class="catalog">
-    <div class="catalog__head">
-        <div class="catalog__title">
-            <h2>Корзина</h3>
+  <div class="catalog__head">
+    <div class="catalog__title">
+      <h2>Корзина</h3>
+    </div>
+    <div class="line"></div>
+  </div>
+
+  <% if(shopping_cart.length==0) { %>
+  <div class="empty__cart" id="cart">
+    <div class="empty__cart__image">
+      <ion-icon class="empty__cart__container-img" name="cart"></ion-icon>
+    </div>
+    <div class="empty__cart__info">
+      <h3>Ваша корзина пуста</h3>
+    </div>
+  </div>
+  <% } %>
+  <% for (let i = 0; i < shopping_cart.length; i++) { %>
+  <div class="container">
+    <div class="product">
+      <div class="image">
+        <a href="<%= shopping_cart[i].id %>">
+          <img class="container-img" src="img/category/anime/aot/<%= shopping_cart[i].image %>" alt="ERROR"></a>
+      </div>
+      <div class="info">
+        <h3><%= shopping_cart[i].title %></h3>
+
+        <ul class="rating">
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star-half"></ion-icon>
+          </li>
+        </ul>
+        <div class="info-price">
+          <span class="price"><%= shopping_cart[i].price %> <small>₽</small></span>
+          <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
+
+          <form method="post" action="/cart_add" class="">
+            <input value="<%= shopping_cart[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+            <input value="<%= shopping_cart[i].title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+            <input value="<%= shopping_cart[i].description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+            <input value="<%= shopping_cart[i].image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+            <input value="<%= shopping_cart[i].price %>" class="form-group__input" type="text" id="price" name="price" placeholder="price" style="display: none;">
+            <input value="<%= shopping_cart[i].stars %>" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars" style="display: none;">
+            <input class="form-button-delete" type="submit" value="Купить">
+          </form>
+
+          <form method="post" action="/cart-del" class="">
+            <input value="<%= shopping_cart[i].id %>" class="form-group__input" type="text" id="id" name="id" placeholder="" style="display: none;">
+            <input class="form-button-delete" type="submit" value="Удалить">
+          </form>
         </div>
-        <div class="line"></div>
+        <p class="info-description"><%= shopping_cart[i].description %></p>
+      </div>
     </div>
 
-    <% if(shopping_cart.length==0) { %>
-    <div class="empty__cart" id="cart">
-        <div class="empty__cart__image">
-             <ion-icon class="empty__cart__container-img" name="cart"></ion-icon>
-        </div>
-        <div class="empty__cart__info">
-            <h3>Ваша корзина пуста</h3>                
-        </div>
-    </div>
-    <% } %>
-    <% for (let i = 0; i < shopping_cart.length; i++) { %>
-        <div class="container">
-                    <div class="product">
-                        <div class="image">
-                            <a  href="<%= shopping_cart[i].id %>">
-                            <img  class="container-img" src="img/category/anime/aot/<%= shopping_cart[i].image %>" alt="ERROR"></a>
-                        </div>
-                        <div class="info">
-                            <h3><%= shopping_cart[i].title %></h3>
-        
-                            <ul class="rating">
-                                <li><ion-icon name="star"></ion-icon></li>
-                                <li><ion-icon name="star"></ion-icon></li>
-                                <li><ion-icon name="star"></ion-icon></li>
-                                <li><ion-icon name="star"></ion-icon></li>
-                                <li><ion-icon name="star-half"></ion-icon></li>
-                            </ul>
-                            <div class="info-price">
-                                <span class="price"><%= shopping_cart[i].price %> <small>₽</small></span>
-                                <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
-        
-                                <form method="post" action="/cart_add" class="">
-                                    <input value="<%= shopping_cart[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
-                                        placeholder="" style="display: none;">
-                                    <input value="<%= shopping_cart[i].title %>" class="form-group__input" type="text" id="title" name="title"
-                                        placeholder="title" style="display: none;">
-                                    <input value="<%= shopping_cart[i].description %>" class="form-group__input" type="text" id="description" name="description"
-                                        placeholder="Описание" style="display: none;">
-                                    <input value="<%= shopping_cart[i].image %>" class="form-group__input" type="text" id="image" name="image"
-                                        placeholder="image" style="display: none;">
-                                    <input value="<%= shopping_cart[i].price %>" class="form-group__input" type="text" id="price" name="price"
-                                        placeholder="price" style="display: none;">
-                                    <input value="<%= shopping_cart[i].stars %>" class="form-group__input" type="text" id="stars" name="stars"
-                                        placeholder="stars" style="display: none;">                                
-                                    <input class="form-button-delete" type="submit" value="Купить">
-                                    </form>
-
-                                    <form method="post" action="/cart-del" class="">
-                                        <input value="<%= shopping_cart[i].id %>" class="form-group__input" type="text" id="id" name="id"
-                                            placeholder="" style="display: none;">
-                                        <input class="form-button-delete" type="submit" value="Удалить">
-                                        </form>
-                            </div>
-                            <p class="info-description"><%= shopping_cart[i].description %></p>
-                        </div>
-                    </div>
-               
-        </div>
-        <% } %>
-</div>
+  </div>
+  <% } %>
 </div>
 <%- include('particles/footer.ejs') %>

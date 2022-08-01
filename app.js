@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
 
 // Инициализация сессии
-app.use(session({secret: "Secret", resave: false, saveUninitialized: true}));
+app.use(session({ secret: "Secret", resave: false, saveUninitialized: true }));
 
 // Middleware
 function isAuth(req, res, next) {
@@ -63,15 +63,15 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/logout', (req, res) => { 
-  req.session.auth = false; 
-  res.redirect('/') 
+app.get('/logout', (req, res) => {
+  req.session.auth = false;
+  res.redirect('/')
 });
 
 app.get('/add', (req, res) => {
   res.render('add', {
     auth: req.session.auth
-  });  
+  });
 });
 
 
@@ -105,7 +105,7 @@ app.post('/store', (req, res) => {
       if (err) throw err;
 
       res.redirect('/')
-  });
+    });
 })
 
 app.post('/store-add', (req, res) => {
@@ -115,7 +115,7 @@ app.post('/store-add', (req, res) => {
       if (err) throw err;
 
       res.redirect('/aot')
-  });
+    });
 })
 
 
@@ -127,7 +127,7 @@ app.post('/delete', (req, res) => {
       if (err) throw err;
 
       res.redirect('/')
-  });
+    });
 })
 
 app.post('/home-delete', (req, res) => {
@@ -137,7 +137,7 @@ app.post('/home-delete', (req, res) => {
       if (err) throw err;
 
       res.redirect('/')
-  });
+    });
 })
 
 app.post('/item-delete', (req, res) => {
@@ -147,7 +147,7 @@ app.post('/item-delete', (req, res) => {
       if (err) throw err;
 
       res.redirect('/')
-  });
+    });
 })
 
 app.post('/update', (req, res) => {
@@ -157,100 +157,106 @@ app.post('/update', (req, res) => {
       if (err) throw err;
 
       res.redirect('/')
-  });
+    });
 })
 
 
-app.post('/register', (req, res) => { 
-    connection.query( 
-      "SELECT * FROM users WHERE name=?", 
-      [[req.body.name], [req.body.password]], (err, data, fields) => { 
-        if (err) throw err; 
-        let salt = 10;
-        let  password = req.body.password;
-        if (data.length == 0) {
-          bcrypt.hash(password, salt, (err, hash) => {  
-                connection.query( 
-                  "INSERT INTO users (name, email, password) VALUES (?,?, ?)", 
-                  [[req.body.name],[req.body.email], hash], (err, data, fields) => { 
-                    if (err) throw err;  
-                    req.session.auth = true; 
-                    res.redirect('/');
-              });             
-            });    
-        } 
-        else { 
-          req.session.auth = false;
-          res.redirect('/auth'); 
-          console.log("This login is already occupied");
-        } 
-   
-      })
+app.post('/register', (req, res) => {
+  connection.query(
+    "SELECT * FROM users WHERE name=?",
+    [[req.body.name], [req.body.password]], (err, data, fields) => {
+      if (err) throw err;
+      let salt = 10;
+      let password = req.body.password;
+      if (data.length == 0) {
+        bcrypt.hash(password, salt, (err, hash) => {
+          connection.query(
+            "INSERT INTO users (name, email, password) VALUES (?,?, ?)",
+            [[req.body.name], [req.body.email], hash], (err, data, fields) => {
+              if (err) throw err;
+              req.session.auth = true;
+              res.redirect('/');
+            });
+        });
+      }
+      else {
+        req.session.auth = false;
+        res.redirect('/auth');
+        console.log("This login is already occupied");
+      }
+
+    })
 });
 
 app.post('/login', (req, res) => {
-  connection.query(  
-    "SELECT * FROM users WHERE name=?", 
-      [[req.body.name]], (err, data, fields) => { 
-        if (err) throw err; 
+  connection.query(
+    "SELECT * FROM users WHERE name=?",
+    [[req.body.name]], (err, data, fields) => {
+      if (err) throw err;
 
-        let password = req.body.password;        
-        let hash = data[0].password;
+      let password = req.body.password;
+      let hash = data[0].password;
 
-        if(data.length = true){
-          connection.query(  
-            "SELECT * FROM users WHERE name=? and password=?", 
-            [[req.body.name], [req.body.password]], (err, data, fields) => { 
-              
-                bcrypt.compare(password, hash, (err, result) => {
-                if(result == true){
-                  req.session.auth = true; 
-                  res.redirect('/');}
-                else{
-                  
-                  req.session.auth = false;
-                  res.redirect('/auth'); 
-                }
-              });
+      if (data.length = true) {
+        connection.query(
+          "SELECT * FROM users WHERE name=? and password=?",
+          [[req.body.name], [req.body.password]], (err, data, fields) => {
+
+            bcrypt.compare(password, hash, (err, result) => {
+              if (result == true) {
+                req.session.auth = true;
+                res.redirect('/');
+                // let user = cookie;
+                console.log(session.Session.username);
+              }
+              else {
+
+                req.session.auth = false;
+                res.redirect('/auth');
+              }
             });
-        }
-        else{
-          
-          req.session.auth = false;
-          res.redirect('/auth'); 
-        }
-    });    
+          });
+      }
+      else {
+
+        req.session.auth = false;
+        res.redirect('/auth');
+      }
+    });
 });
 
 
 // КОРЗИНА
 
 app.get('/shopping_cart', isAuth, (req, res) => {
-    connection.query(
-    "SELECT * FROM shopping_cart",(err, data, fields) => {
+  connection.query(
+    "SELECT * FROM shopping_cart", (err, data, fields) => {
       if (err) throw err;
       res.render('shopping_cart', {
-          'shopping_cart': data,
-            auth: req.session.auth                
+        'shopping_cart': data,
+        auth: req.session.auth
       });
-    }); 
-  });  
+    });
+});
 // });
 
 app.post('/cart_add', (req, res) => {
   connection.query(
     "SELECT * FROM shopping_cart WHERE title=?",
-    [[req.body.title]], (err, data, fields) =>{
+    [[req.body.title]], (err, data, fields) => {
       if (err) throw err;
-      if(data.length == 0){
+
+      let user = session.cookie;
+      console.log(user);
+      if (data.length == 0) {
         connection.query(
-        "INSERT INTO shopping_cart (title, description, image, price, stars) VALUES (?, ?, ?, ?, ?)",
-        [[req.body.title], [req.body.description], [req.body.image], [req.body.price], [req.body.stars]], (err, data, fields) => {
-          if (err) throw err;   
-           
-        });
+          "INSERT INTO shopping_cart (user, title, description, image, price, stars) VALUES (?, ?, ?, ?, ?, ?)",
+          [user, [req.body.title], [req.body.description], [req.body.image], [req.body.price], [req.body.stars]], (err, data, fields) => {
+            if (err) throw err;
+
+          });
       }
-  });
+    });
 })
 
 app.post('/cart-del', (req, res) => {
@@ -260,7 +266,7 @@ app.post('/cart-del', (req, res) => {
       if (err) throw err;
 
       res.redirect('/shopping_cart')
-  });
+    });
 })
 // КАТЕГОРИИ
 
@@ -268,128 +274,128 @@ app.get('/anime', (req, res) => {
   connection.query("SELECT * FROM anime", (err, data, fields) => {
     if (err) throw err;
     res.render('category/anime', {
-        'anime': data,
-        auth: req.session.auth
+      'anime': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/games', (req, res) => {
   connection.query("SELECT * FROM games", (err, data, fields) => {
     if (err) throw err;
     res.render('category/games', {
-        'games': data,
-        auth: req.session.auth
+      'games': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/music', (req, res) => {
   connection.query("SELECT * FROM music", (err, data, fields) => {
     if (err) throw err;
     res.render('category/music', {
-        'music': data,
-        auth: req.session.auth
+      'music': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/cartoon', (req, res) => {
   connection.query("SELECT * FROM cartoon", (err, data, fields) => {
     if (err) throw err;
     res.render('category/cartoon', {
-        'cartoon': data,
-        auth: req.session.auth
+      'cartoon': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/fanko_pop', (req, res) => {
   connection.query("SELECT * FROM fanko_pop", (err, data, fields) => {
     if (err) throw err;
     res.render('category/fanko_pop', {
-        'fanko_pop': data,
-        auth: req.session.auth
+      'fanko_pop': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/movies', (req, res) => {
   connection.query("SELECT * FROM movies", (err, data, fields) => {
     if (err) throw err;
     res.render('category/movies', {
-        'movies': data,
-        auth: req.session.auth
+      'movies': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 
 // КАТАЛОГ
-  // АНИМЕ
-  app.get('/aot', (req, res) => {
-    connection.query("SELECT * FROM aot", (err, data, fields) => {
-      if (err) throw err;
-      res.render('catalog/anime/aot', {
-          'aot': data,
-          auth: req.session.auth
-      });
-    });  
-  });
-  app.get('/aot/:id', (req, res) => {
-    connection.query("SELECT * FROM aot WHERE id=?", [req.params.id],
-      (err, data, fields) => {
-        if (err) throw err;
-
-        res.render('item', {
-          'aot': data[0],
-          auth: req.session.ayth
-        });
+// АНИМЕ
+app.get('/aot', (req, res) => {
+  connection.query("SELECT * FROM aot", (err, data, fields) => {
+    if (err) throw err;
+    res.render('catalog/anime/aot', {
+      'aot': data,
+      auth: req.session.auth
     });
   });
-  app.get('/DemonSlayer', (req, res) => {
-    connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
+});
+app.get('/aot/:id', (req, res) => {
+  connection.query("SELECT * FROM aot WHERE id=?", [req.params.id],
+    (err, data, fields) => {
       if (err) throw err;
-      res.render('catalog/anime/DemonSlayer', {
-          'DemonSlayer': data,
-          auth: req.session.auth
-      });
-    });  
-  });
-  app.get('/DemonSlayer/:id', (req, res) => {
-    connection.query("SELECT * FROM DemonSlayer WHERE id=?", [req.params.id],
-      (err, data, fields) => {
-        if (err) throw err;
 
-        res.render('item', {
-          'DemonSlayer': data[0],
-          auth: req.session.ayth
-        });
+      res.render('item', {
+        'aot': data[0],
+        auth: req.session.ayth
+      });
+    });
+});
+app.get('/DemonSlayer', (req, res) => {
+  connection.query("SELECT * FROM DemonSlayer", (err, data, fields) => {
+    if (err) throw err;
+    res.render('catalog/anime/DemonSlayer', {
+      'DemonSlayer': data,
+      auth: req.session.auth
     });
   });
-  app.get('/OnePanchMan', (req, res) => {
-    connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
+});
+app.get('/DemonSlayer/:id', (req, res) => {
+  connection.query("SELECT * FROM DemonSlayer WHERE id=?", [req.params.id],
+    (err, data, fields) => {
       if (err) throw err;
-      res.render('catalog/anime/OnePanchMan', {
-          'onepanchman': data,
-          auth: req.session.auth
-      });
-    });  
-  });
-  app.get('/OnePanchMan/:id', (req, res) => {
-    connection.query("SELECT * FROM onepanchman WHERE id=?", [req.params.id],
-      (err, data, fields) => {
-        if (err) throw err;
 
-        res.render('item', {
-          'onepanchman': data[0],
-          auth: req.session.ayth
-        });
+      res.render('item', {
+        'DemonSlayer': data[0],
+        auth: req.session.ayth
+      });
+    });
+});
+app.get('/OnePanchMan', (req, res) => {
+  connection.query("SELECT * FROM onepanchman", (err, data, fields) => {
+    if (err) throw err;
+    res.render('catalog/anime/OnePanchMan', {
+      'onepanchman': data,
+      auth: req.session.auth
     });
   });
+});
+app.get('/OnePanchMan/:id', (req, res) => {
+  connection.query("SELECT * FROM onepanchman WHERE id=?", [req.params.id],
+    (err, data, fields) => {
+      if (err) throw err;
+
+      res.render('item', {
+        'onepanchman': data[0],
+        auth: req.session.ayth
+      });
+    });
+});
 // ИГРЫ
 app.get('/GenshinImpact', (req, res) => {
   connection.query("SELECT * FROM genshinimpact", (err, data, fields) => {
     if (err) throw err;
     res.render('catalog/games/GenshinImpact', {
-        'genshinimpact': data,
-        auth: req.session.auth
+      'genshinimpact': data,
+      auth: req.session.auth
     });
-  });  
+  });
 });
 app.get('/GenshinImpact/:id', (req, res) => {
   connection.query("SELECT * FROM genshinimpact WHERE id=?", [req.params.id],
@@ -400,5 +406,5 @@ app.get('/GenshinImpact/:id', (req, res) => {
         'genshinimpact': data[0],
         auth: req.session.ayth
       });
-  });
+    });
 });

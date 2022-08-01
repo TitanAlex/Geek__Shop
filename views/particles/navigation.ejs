@@ -1,53 +1,73 @@
 <div class="navigation">
-    <div class="navigation__box">
-        <a class="navigation__link_menu" href="/auth"><ion-icon name="menu-outline"></ion-icon></a>
-        <a class="navigation__link_img" href="/"><img src="/img/header/Logo.jpg" alt="ERROR" ></a>
-        <a class="navigation__link" href="/">Главная</a>
-        <a class="navigation__link" href="/about-us">О нас</a>
+  <div class="navigation__box">
+    <a class="navigation__link_menu" href="/auth">
+      <ion-icon name="menu-outline"></ion-icon>
+    </a>
+    <a class="navigation__link_img" href="/"><img src="/img/header/Logo.jpg" alt="ERROR"></a>
+    <a class="navigation__link" href="/">Главная</a>
+    <a class="navigation__link" href="/about-us">О нас</a>
     <% if (auth) { %>
-        <a class="navigation__link" href="/shopping_cart">Корзина</a>
-        <a class="navigation__link" href="/add">Админка</a>
-        <a class="navigation__link" href="/logout">Выйти</a>
+    <a class="navigation__link" href="/add">Админка</a>
+    <a class="navigation__link" href="/shopping_cart">
+      <ion-icon name="cart"></ion-icon>
+    </a>
+    <a class="navigation__link" href="/logout">
+      <ion-icon name="log-out"></ion-icon>
+    </a>
     <% } else { %>
-        
-        <a class="navigation__link" href="/auth"><ion-icon name="person-circle-outline"></ion-icon></a>
+
+    <a class="navigation__link" href="/auth">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </a>
     <% } %>
-    </div>
-</div> 
+  </div>
+</div>
 
 <div class="menu">
-    <input type="checkbox" id="side-checkbox" />
-    <div class="side-panel">
-        <label class="side-button-2" for="side-checkbox">+</label>    
-        <div class="side-title" ><a class="navigation__link_img__menu" href="/"><img src="/img/header/Logo.jpg" alt="ERROR" ></a></div>
-        <div class="navigation__menu">
-            <div class="navigation__box__menu">
-                <ul class="navigation__box__list__menu">
+  <input type="checkbox" id="side-checkbox" />
+  <div class="side-panel">
+    <label class="side-button-2" for="side-checkbox">+</label>
+    <div class="side-title"><a class="navigation__link_img__menu" href="/"><img src="/img/header/Logo.jpg" alt="ERROR"></a></div>
+    <div class="navigation__menu">
+      <div class="navigation__box__menu">
+        <ul class="navigation__box__list__menu">
 
-                <li><a class="navigation__link__menu" href="/">Главная</a></li>
-                <li><a class="navigation__link__menu" href="/about-us">О нас</a></li>
-            <% if (auth) { %>
-                <li><a class="navigation__link__menu" href="/shopping_cart">Корзина</a></li>
-                <li><a class="navigation__link__menu" href="/add">Админка</a></li>
-                <li><a class="navigation__link__menu" href="/logout">Выйти</a></li>
-            <% } else { %>
-                
-                <li><a class="navigation__link__menu" href="/auth" ><ion-icon name="person-circle-outline"></ion-icon></a></li>
-            <% } %>
-                </ul>
-            </div>
-        </div>
-        <p>+79782905124</p> 
+          <li><a class="navigation__link__menu" href="/">Главная</a></li>
+          <li><a class="navigation__link__menu" href="/about-us">О нас</a></li>
+          <% if (auth) { %>
+          <li><a class="navigation__link__menu" href="/shopping_cart">
+              <ion-icon name="cart"></ion-icon>
+            </a></li>
+          <li><a class="navigation__link__menu" href="/add">Админка</a></li>
+          <li><a class="navigation__link__menu" href="/logout">
+              <ion-icon name="log-out"></ion-icon>
+            </a></li>
+          <% } else { %>
+
+          <li><a class="navigation__link__menu" href="/auth">
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </a></li>
+          <% } %>
+        </ul>
+      </div>
     </div>
-    <div class="side-button-1-wr">
-        <label class="side-button-1" for="side-checkbox">
-            <div class="side-b side-open"><ion-icon name="menu-outline"></div>
-            <div class="side-b side-close"><ion-icon name="menu-outline"></div>
-        </label>
-        <a class="navigation__link_img__menu" href="/"><img src="/img/header/Logo.jpg" alt="ERROR" ></a>
+    <p>+79782905124</p>
+  </div>
+  <div class="side-button-1-wr">
+    <label class="side-button-1" for="side-checkbox">
+      <div class="side-b side-open">
+        <ion-icon name="menu-outline">
+      </div>
+      <div class="side-b side-close">
+        <ion-icon name="menu-outline">
+      </div>
+    </label>
+    <a class="navigation__link_img__menu" href="/"><img src="/img/header/Logo.jpg" alt="ERROR"></a>
 
-        <a class="navigation__link__menu" href="/shopping_cart" style="color: black; font-size: 30px;"><ion-icon name="cart"></ion-icon></a>
+    <a class="navigation__link__menu" href="/shopping_cart" style="color: black; font-size: 30px;">
+      <ion-icon name="cart"></ion-icon>
+    </a>
 
-    </div> 
-    
-</div>  
+  </div>
+
+</div>

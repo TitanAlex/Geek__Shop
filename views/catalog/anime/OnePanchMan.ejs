@@ -3,101 +3,99 @@
 <%- include('../../particles/navigation.ejs') %>
 
 <div class="catalog">
-    <div class="catalog__head">
-        <div class="catalog__title">
-            <h2>Ванпанчмен</h3>
-        </div>
-        <div class="line"></div>
+  <div class="catalog__head">
+    <div class="catalog__title">
+      <h2>Ванпанчмен</h3>
     </div>
-<% for (let i = 0; i < onepanchman.length; i++) { %>
-<div class="container">
-            <div class="product">
-                <div class="image">
-                    <a  href="/onepanchman/<%= onepanchman[i].id %>">
-                    <img  class="container-img" src="img/onepanchman/<%= onepanchman[i].image %>" alt="ERROR"></a>
-                </div>
-                <div class="info">
-                    <h3><%= onepanchman[i].title %></h3>
+    <div class="line"></div>
+  </div>
+  <% for (let i = 0; i < onepanchman.length; i++) { %>
+  <div class="container">
+    <div class="product">
+      <div class="image">
+        <a href="/onepanchman/<%= onepanchman[i].id %>">
+          <img class="container-img" src="img/onepanchman/<%= onepanchman[i].image %>" alt="ERROR"></a>
+      </div>
+      <div class="info">
+        <h3><%= onepanchman[i].title %></h3>
 
-                    <ul class="rating">
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star"></ion-icon></li>
-                        <li><ion-icon name="star-half"></ion-icon></li>
-                    </ul>
-                    <div class="info-price">
-                        <span class="price"><%= onepanchman[i].price %> <small>₽</small></span>
-                        <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
+        <ul class="rating">
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star"></ion-icon>
+          </li>
+          <li>
+            <ion-icon name="star-half"></ion-icon>
+          </li>
+        </ul>
+        <div class="info-price">
+          <span class="price"><%= onepanchman[i].price %> <small>₽</small></span>
+          <!-- <button class="add-to-cart"><ion-icon name="cart-outline"></ion-icon></button> -->
 
-                        <form method="post" action="/cart_add" class="">
-                            <input value="<%= onepanchman[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
-                                placeholder="" style="display: none;">
-                            <input value="<%= onepanchman[i].title %>" class="form-group__input" type="text" id="title" name="title"
-                                placeholder="title" style="display: none;">
-                            <input value="<%= onepanchman[i].description %>" class="form-group__input" type="text" id="description" name="description"
-                                placeholder="Описание" style="display: none;">
-                            <input value="<%= onepanchman[i].image %>" class="form-group__input" type="text" id="image" name="image"
-                                placeholder="image" style="display: none;">
-                            <input value="<%= onepanchman[i].price %>" class="form-group__input" type="text" id="price" name="price"
-                                placeholder="price" style="display: none;">
-                            <input value="<%= onepanchman[i].stars %>" class="form-group__input" type="text" id="stars" name="stars"
-                                placeholder="stars" style="display: none;">
-                                <input class="form-button-delete" type="submit" value="Купить">
-                            </form>
-                    </div>
-                    <p class="info-description"><%= onepanchman[i].description %></p>
-                </div>
-            </div>
-       
-</div>
-<% } %>
+          <form method="post" action="/cart_add" class="">
+            <input value="<%= onepanchman[i].id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+            <input value="<%= onepanchman[i].title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+            <input value="<%= onepanchman[i].description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+            <input value="<%= onepanchman[i].image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+            <input value="<%= onepanchman[i].price %>" class="form-group__input" type="text" id="price" name="price" placeholder="price" style="display: none;">
+            <input value="<%= onepanchman[i].stars %>" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars" style="display: none;">
+            <input class="form-button-delete" type="submit" value="Купить">
+          </form>
+        </div>
+        <p class="info-description"><%= onepanchman[i].description %></p>
+      </div>
+    </div>
+
+  </div>
+  <% } %>
 </div>
 
 <form action="/store-add" method="post" class="form_group_all">
-    <div class="form-group">
-        <label class="form-group__label" for="title">Заголовок</label>
-        <input value="" class="form-group__input" type="text" id="title" name="title"
-            placeholder="title">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="title">Заголовок</label>
+    <input value="" class="form-group__input" type="text" id="title" name="title" placeholder="title">
+  </div>
 
-    <div class="form-group">
-        <label class="form-group__label" for="image">Картинка</label>
-        <input value="" class="form-group__input" type="text" id="image" name="image"
-            placeholder="image">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="image">Картинка</label>
+    <input value="" class="form-group__input" type="text" id="image" name="image" placeholder="image">
+  </div>
 
-    <div class="form-group">
-        <label class="form-group__label" for="title">Цена</label>
-        <input value="" class="form-group__input" type="text" id="price" name="price"
-            placeholder="price">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="title">Цена</label>
+    <input value="" class="form-group__input" type="text" id="price" name="price" placeholder="price">
+  </div>
 
-    <div class="form-group">
-        <label class="form-group__label" for="title">Оценка</label>
-        <input value="" class="form-group__input" type="text" id="stars" name="stars"
-            placeholder="stars">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="title">Оценка</label>
+    <input value="" class="form-group__input" type="text" id="stars" name="stars" placeholder="stars">
+  </div>
 
-    <div class="form-group">
-        <label class="form-group__label" for="title">Описание</label>
-        <input value="" class="form-group__input" type="text" id="description" name="description"
-            placeholder="description">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="title">Описание</label>
+    <input value="" class="form-group__input" type="text" id="description" name="description" placeholder="description">
+  </div>
 
-        <input class="form-button" type="submit" value="Добавить">
+  <input class="form-button" type="submit" value="Добавить">
 
-       
+
 </form>
 
 <form method="post" action="/delete" class="form_group_all">
-    <div class="form-group">
-        <label class="form-group__label" for="title">Id</label>
-        <input value="" class="form-group__input" type="text" id="id" name="id"
-            placeholder="Id">
-    </div>
+  <div class="form-group">
+    <label class="form-group__label" for="title">Id</label>
+    <input value="" class="form-group__input" type="text" id="id" name="id" placeholder="Id">
+  </div>
 
-        <input class="form-button-delete" type="submit" value="Удалить">
+  <input class="form-button-delete" type="submit" value="Удалить">
 
 </form>
 <%- include('../../particles/footer.ejs') %>

@@ -3,56 +3,47 @@
 <%- include('particles/navigation.ejs') %>
 
 <div class="section">
-    <h2 class="section">
-        <%= aot.title %>
-    </h2>
-    <img class="section__image" src="/img/category/aot/<%= aot.image %>">
-    <p class="section__description"><%= aot.description %></p>
-    
+  <h2 class="section">
+    <%= aot.title %>
+  </h2>
+  <img class="section__image" src="/img/category/aot/<%= aot.image %>">
+  <p class="section__description"><%= aot.description %></p>
+
 </div>
 
 <div class="form__user">
-    <form action="/update" method="post" class="form_group_all">
+  <form action="/update" method="post" class="form_group_all">
     <div class="form-group">
-        <label class="form-group__label" for="title">Заголовок</label>
-        <input value="<%= aot.title %>" class="form-group__input" type="text" id="title" name="title"
-            placeholder="title">
+      <label class="form-group__label" for="title">Заголовок</label>
+      <input value="<%= aot.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title">
     </div>
 
     <div class="form-group">
-        <label class="form-group__label" for="title">Описание</label>
-        <input value="<%= aot.description %>" class="form-group__input" type="text" id="description" name="description"
-            placeholder="Описание">
+      <label class="form-group__label" for="title">Описание</label>
+      <input value="<%= aot.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание">
     </div>
 
     <div class="form-group">
-        <label class="form-group__label" for="image">Картинка</label>
-        <input value="<%= aot.image %>" class="form-group__input" type="text" id="image" name="image"
-            placeholder="image">
+      <label class="form-group__label" for="image">Картинка</label>
+      <input value="<%= aot.image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image">
     </div>
-        <input value="<%= aot.id %>" class="form-group__input" type="text" id="id" name="id"
-        placeholder="" style="display: none;">      
-        <input class="form-button" type="submit" value="Обновить">
+    <input value="<%= aot.id %>" class="form-group__input" type="text" id="id" name="id" placeholder="" style="display: none;">
+    <input class="form-button" type="submit" value="Обновить">
 
-        
-    </form>
 
-    <form method="post" action="/item-delete" class="form_group_all">
-    <input value="<%= aot.id %>" class="form-group__input" type="text" id="id" name="id"
-        placeholder="" style="display: none;">
+  </form>
+
+  <form method="post" action="/item-delete" class="form_group_all">
+    <input value="<%= aot.id %>" class="form-group__input" type="text" id="id" name="id" placeholder="" style="display: none;">
     <input class="form-button-delete" type="submit" value="Удалить">
-    </form>
+  </form>
 
-    <form method="post" action="/cart_add" class="form_group_all">
-        <input value="<%= aot.id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart"
-            placeholder="" style="display: none;">
-        <input value="<%= aot.title %>" class="form-group__input" type="text" id="title" name="title"
-            placeholder="title" style="display: none;">
-        <input value="<%= aot.description %>" class="form-group__input" type="text" id="description" name="description"
-            placeholder="Описание" style="display: none;">
-        <input value="<%= aot.image %>" class="form-group__input" type="text" id="image" name="image"
-            placeholder="image" style="display: none;">
-        <input class="form-button-delete" type="submit" value="Купить">
-        </form>
+  <form method="post" action="/cart_add" class="form_group_all">
+    <input value="<%= aot.id %>" class="form-group__input" type="text" id="shopping-cart" name="shopping-cart" placeholder="" style="display: none;">
+    <input value="<%= aot.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="title" style="display: none;">
+    <input value="<%= aot.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Описание" style="display: none;">
+    <input value="<%= aot.image %>" class="form-group__input" type="text" id="image" name="image" placeholder="image" style="display: none;">
+    <input class="form-button-delete" type="submit" value="Купить">
+  </form>
 </div>
 <%- include('particles/footer.ejs') %>
