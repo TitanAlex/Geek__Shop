@@ -27,9 +27,25 @@ p{
 
  /* CATALOG */
 .catalog{
-  padding: 20px;
+  
   text-align: center;
   
+}
+.catalog__baner{
+  background-color: #0c91c7;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content:  space-evenly;
+  align-items: center;
+}
+.catalog__baner h1{
+  font-weight: bold;
+}
+.catalog__baner img{
+  
+  width: 300px;
 }
 .catalog__title{
   margin-top: 0; 
@@ -81,6 +97,7 @@ p{
 .container{
   margin: 20px;
   width: 290px;
+  padding: 20px;
   display: inline-block;
  }
 .image{

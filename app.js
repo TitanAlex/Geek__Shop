@@ -64,6 +64,17 @@ app.get('/', (req, res) => {
     });
   });
 });
+app.get('/catalog', (req, res) => {
+  connection.query("SELECT * FROM category", (err, data, fields) => {
+    if (err) throw err;
+
+    res.render('catalog', {
+      'category': data,
+      'users': data,
+      auth: req.session.auth
+    });
+  });
+});
 
 app.get('/logout', (req, res) => {
   req.session.auth = false;
@@ -207,15 +218,15 @@ app.post('/login', (req, res) => {
     "SELECT * FROM users WHERE name=?",
     [[req.body.name]], (err, data, fields) => {
       if (err) throw err;
-
-      let password = req.body.password;
       let hash = data[0].password;
-
-      if (data.length = true) {
+      let password = req.body.password;
+      let name =  new String(req.body.name);
+      let dataName = new String(data[0].name)
+      if (name.length === dataName.length) {
         connection.query(
           "SELECT * FROM users WHERE name=? and password=?",
           [[req.body.name], [req.body.password]], (err, data, fields) => {
-
+            if (err) throw err;             
             bcrypt.compare(password, hash, (err, result) => {
               if (result == true) {
                 req.session.auth = true;

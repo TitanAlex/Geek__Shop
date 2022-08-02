@@ -4,9 +4,9 @@
       <ion-icon name="menu-outline"></ion-icon>
     </a>
     <a class="navigation__link_img" href="/"><img src="/img/header/Logo.jpg" alt="ERROR"></a>
-    <a class="navigation__link" href="/">Главная</a>
+    <a class="navigation__link" href="/catalog">Каталог</a>
     <a class="navigation__link" href="/about-us">О нас</a>
-    
+
     <% if (auth) { %>
     <a class="navigation__link" href="/shopping_cart">
       <ion-icon name="cart"></ion-icon>
@@ -21,8 +21,8 @@
     </a>
     <% } %>
     <% if(auth) { %>
-      <a class="navigation__link" href="/add">Админка</a>
-        <% } %>
+    <a class="navigation__link" href="/add">Админка</a>
+    <% } %>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
       <div class="navigation__box__menu">
         <ul class="navigation__box__list__menu">
 
-          <li><a class="navigation__link__menu" href="/">Главная</a></li>
+          <li><a class="navigation__link__menu" href="/catalog">Каталог</a></li>
           <li><a class="navigation__link__menu" href="/about-us">О нас</a></li>
           <% if (auth) { %>
           <li><a class="navigation__link__menu" href="/shopping_cart">

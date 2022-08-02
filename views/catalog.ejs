@@ -2,23 +2,17 @@
 
 <%- include('particles/navigation.ejs') %>
 
-<div class="home">
-  <div class="home__baner">
-    <div class="home__inf">
-      <h1>OUR.GEEK.SHOP</h1>
-      <p>интернет-магазин</p>
-      <p> для настоящих гиков</p>
-      <a href="/catalog">Каталог</a>
+<div class="catalog">
+  <div class="catalog__baner">
+    <h1>Рад познакомиться, мой дорогой друг</h1>
+    <img src="./img/bodyguard.png" alt="ERROR">
+  </div>
+  <div class="catalog__head">
+    <div class="catalog__title">
+      <h2>Категории</h3>
     </div>
-    <img src="./img/baner.jpg" alt="ERROR">
-    
+    <div class="line"></div>
   </div>
-</div>
-<div class="new__products">
-  <div class="new__products__title">
-    <h2> <ion-icon name="flame"></ion-icon>Новинки <ion-icon name="flame"></ion-icon></h3>
-  </div>
-  <div class="line"></div>
   <% for (let i = 0; i < category.length; i++) { %>
   <div class="container">
     <div class="product">
@@ -34,5 +28,4 @@
   </div>
   <% } %>
 </div>
-
 <%- include('particles/footer.ejs') %>

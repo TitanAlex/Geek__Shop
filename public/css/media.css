@@ -10,6 +10,10 @@
     .navigation{display: none;}
     .left__box{float: none; margin: 0px; font-size: medium;}
     .right__box{float: none; margin: 0px; font-size: medium;}
+    .catalog__baner{ display: inline-block;}
+    .catalog__baner h1{font-size: x-large; margin-bottom: 20px;}
+    .home{text-align: center; padding: 0px;}
+    .home__baner{display: inline-block;}
 }
 
 
