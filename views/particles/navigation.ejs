@@ -6,8 +6,8 @@
     <a class="navigation__link_img" href="/"><img src="/img/header/Logo.jpg" alt="ERROR"></a>
     <a class="navigation__link" href="/">Главная</a>
     <a class="navigation__link" href="/about-us">О нас</a>
+    
     <% if (auth) { %>
-    <a class="navigation__link" href="/add">Админка</a>
     <a class="navigation__link" href="/shopping_cart">
       <ion-icon name="cart"></ion-icon>
     </a>
@@ -20,6 +20,9 @@
       <ion-icon name="person-circle-outline"></ion-icon>
     </a>
     <% } %>
+    <% if(auth) { %>
+      <a class="navigation__link" href="/add">Админка</a>
+        <% } %>
   </div>
 </div>
 

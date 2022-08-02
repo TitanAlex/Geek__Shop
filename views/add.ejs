@@ -30,11 +30,12 @@
   </div>
 
   <input class="form-button-delete" type="submit" value="Удалить">
-  <input type="file" multiple="multiple" accept=".txt,image/*">
-  <a href="#" class="upload_files button">Загрузить файлы</a>
-  <div class="ajax-reply"></div>
 </form>
 
+<form class="form_group_all" method="post" action="/upload" enctype="multipart/form-data">
+  <input type="file" name="image">
+  <button type="submit" name="upload">Upload</button>
+</form>
 
 
 <%- include('particles/footer.ejs') %>

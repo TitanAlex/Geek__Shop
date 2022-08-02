@@ -6,10 +6,11 @@ const session = require('express-session');
 const bcrypt = require("bcrypt");
 const multer = require("multer");
 const { Session } = require('inspector');
+const fs = require("fs");
 const app = express()
 
 // Путь к директории для загрузок
-const upload = multer({ dest: "./public/img/" });
+const upload = multer({ dest: "./public/img/category/catalog/" });
 
 // Соединение с базой данных
 const connection = mysql.createConnection({
@@ -58,6 +59,7 @@ app.get('/', (req, res) => {
 
     res.render('home', {
       'category': data,
+      'users': data,
       auth: req.session.auth
     });
   });
@@ -73,8 +75,6 @@ app.get('/add', (req, res) => {
     auth: req.session.auth
   });
 });
-
-
 
 app.get('/about-us', (req, res) => {
   res.render('about-us', {
@@ -160,6 +160,20 @@ app.post('/update', (req, res) => {
     });
 })
 
+app.post("/upload", upload.single("image"), (req, res) => {
+  const tempPath = req.file.path;
+  const targetPath = path.join(
+    __dirname,
+    "./public/img/category/catalog/" + req.file.originalname
+  );
+
+  fs.rename(tempPath, targetPath, (err) => {
+    if (err) console.log(err);
+
+    res.redirect('/add');
+  });
+});
+
 
 app.post('/register', (req, res) => {
   connection.query(
@@ -206,8 +220,7 @@ app.post('/login', (req, res) => {
               if (result == true) {
                 req.session.auth = true;
                 res.redirect('/');
-                // let user = cookie;
-                console.log(session.Session.username);
+
               }
               else {
 
@@ -226,6 +239,7 @@ app.post('/login', (req, res) => {
 });
 
 
+
 // КОРЗИНА
 
 app.get('/shopping_cart', isAuth, (req, res) => {
@@ -234,30 +248,35 @@ app.get('/shopping_cart', isAuth, (req, res) => {
       if (err) throw err;
       res.render('shopping_cart', {
         'shopping_cart': data,
+        'users': data,
         auth: req.session.auth
       });
     });
 });
-// });
+
 
 app.post('/cart_add', (req, res) => {
   connection.query(
-    "SELECT * FROM shopping_cart WHERE title=?",
-    [[req.body.title]], (err, data, fields) => {
+    "SELECT * FROM users ",
+    [[req.body.name]], (err, data, fields) => {
       if (err) throw err;
-
-      let user = session.cookie;
+      let user = data[1].id;
       console.log(user);
-      if (data.length == 0) {
-        connection.query(
-          "INSERT INTO shopping_cart (user, title, description, image, price, stars) VALUES (?, ?, ?, ?, ?, ?)",
-          [user, [req.body.title], [req.body.description], [req.body.image], [req.body.price], [req.body.stars]], (err, data, fields) => {
-            if (err) throw err;
-
-          });
-      }
+      connection.query(
+        "SELECT * FROM shopping_cart WHERE title=?",
+        [[req.body.title]], (err, data, fields) => {
+          if (err) throw err;
+          if (data.length == 0) {
+            connection.query(
+              "INSERT INTO shopping_cart (user, title, description, image, price, stars) VALUES (?, ?, ?, ?, ?, ?)",
+              [user, [req.body.title], [req.body.description], [req.body.image], [req.body.price], [req.body.stars]], (err, data, fields) => {
+                if (err) throw err;
+                
+              });
+          }
+        });
     });
-})
+});
 
 app.post('/cart-del', (req, res) => {
   connection.query(
@@ -320,6 +339,15 @@ app.get('/movies', (req, res) => {
     if (err) throw err;
     res.render('category/movies', {
       'movies': data,
+      auth: req.session.auth
+    });
+  });
+});
+app.get('/clothes', (req, res) => {
+  connection.query("SELECT * FROM clothes", (err, data, fields) => {
+    if (err) throw err;
+    res.render('category/clothes', {
+      'clothes': data,
       auth: req.session.auth
     });
   });
